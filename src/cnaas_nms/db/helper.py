@@ -40,9 +40,9 @@ def find_mgmtdomain(session, hostnames: List[str]) -> Optional[Mgmtdomain]:
     except NoResultFound:
         raise ValueError(f"hostname {hostnames[0]} not found in device database")
     try:
-        device1: Device = session.query(Device).filter(Device.hostname == hostnames[1]).one()
+        device1: Device = session.query(Device).filter(Device.hostname == hostnames[0]).one()
     except NoResultFound:
-        raise ValueError(f"hostname {hostnames[1]} not found in device database")
+        raise ValueError(f"hostname {hostnames[0]} not found in device database")
 
     if device0.device_type == DeviceType.DIST or device1.device_type == DeviceType.DIST:
         if device0.device_type != DeviceType.DIST or device1.device_type != DeviceType.DIST:
